@@ -1,61 +1,104 @@
-# 增长实验执行与复盘 · Growth Experiments
+![Growth Experiments — five independent growth skills](docs/assets/cover.svg)
 
-把“接下来怎么增长”变成一项值得做的验证：选假设、定方案、协调执行、检查数据，最后决定继续、扩大、修改还是停止。
+# Growth Experiments
 
-适合海外产品的渠道验证、内容测试、激活优化、购买与留存实验。既能处理有足够流量的对照试验，也能在只有少量客户时设计有价值的验证。支持单独使用，或承接市场研究、内容、获客和客户增长的结果。
+**增长实验执行与复盘 · 把增长猜想变成可执行的验证，再用数据、成本与风险决定继续、扩大、修改还是停止。**
 
-## 安装和第一次使用
+[![Validate](https://github.com/NextVariable/global-growth-experiments-skill/actions/workflows/validate.yml/badge.svg)](https://github.com/NextVariable/global-growth-experiments-skill/actions/workflows/validate.yml) [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![Agent Skills](https://img.shields.io/badge/Agent_Skills-compatible-6e56cf.svg)](https://agentskills.io/specification)
 
-将 [完整技能目录](skills/global-growth-experiments/)复制到支持 Agent Skills 的客户端。以 Codex 为例，在终端逐行运行：
+[快速开始](#quick-start) · [任务示例](examples/first-task.md) · [方法](#method) · [验证](#validation) · [五个 Skill 合集](https://github.com/NextVariable/global-growth-skills)
 
-```bash
+输入 **当前投入决定、已有数据、候选改动、预算、时间与可用工具**，得到 **验证方案、测量口径、执行交接、结果解释和下一步决定**。可以独立使用；已有项目资料或其他 Skill 的交接都能直接接入。指令以中文编写，对客产物按目标受众选择语言。
+
+## In practice
+
+> 成熟样本从 24/60 到 33/60：40%→55%，增加 15 个百分点，相对增加 37.5%。预设安全停止线已触发，应停止新版继续暴露。
+>
+> 不把尚未成熟的各 40 家当失败，也不用 p>0.05 证明安全；低流量时用真实任务观察排除障碍。
+
+以上是合成任务的结果节选。[查看输入和完整任务说明 →](examples/first-task.md)
+
+## Quick start
+
+在你的项目目录运行，选择要安装到的客户端：
+
+```sh
+npx skills add NextVariable/global-growth-experiments-skill --skill global-growth-experiments
+```
+
+需要跨项目使用时加 `-g`。此安装方式需要 Node.js 22.20+；也可以直接复制技能目录。
+
+<details>
+<summary>手动安装到 Codex（Git；已有目录时停止）</summary>
+
+```sh
 git clone https://github.com/NextVariable/global-growth-experiments-skill.git
 cd global-growth-experiments-skill
-mkdir -p ~/.agents/skills
-cp -R skills/global-growth-experiments ~/.agents/skills/
+mkdir -p "$HOME/.agents/skills"
+target="$HOME/.agents/skills/global-growth-experiments"
+if [ -e "$target" ] || [ -L "$target" ]; then
+  echo "Already exists: $target"
+else
+  cp -R skills/global-growth-experiments "$target"
+fi
 ```
 
-已有同名目录时先核对版本，避免混入旧文件。重新加载客户端，输入：
+完整保留 `skills/global-growth-experiments/` 内的方法、模板和许可。已有同名目录时先保存旧版及个人修改，再比较版本；不要把两份目录直接合并。其他客户端使用其配置的 Skill 目录。
+
+</details>
+
+重新加载客户端后调用 `$global-growth-experiments`。方法通过客户端工具工作；可选计算/状态脚本使用 Python 3.10+ 标准库。
 
 ```text
-使用 $global-growth-experiments。我们给小团队做对账工具，每周约有
-30 个新注册团队，只有 8 个完成首次核对。团队怀疑首用步骤太多，
-也有人建议先加广告。我们只有一名开发者和两周时间。
-请先判断值得验证什么，给具体执行方案、需要记录的行为，以及
-什么结果会让我们保留、修改或放弃这个方案。不要替我们投放。
+使用 $global-growth-experiments。
+产品与当前阶段：……
+这次要解决：……
+已确认的能力、材料和限制：……
+可投入的时间、预算与人员：……
+请完成我需要的产物；未知的关键条件明确说明。
 ```
 
-最少提供产品和当前决定、已有事实/数据、资源限制。没有基线也可开始，Skill 会设计补充测量或小规模验证，不用虚构数字补齐。
+项目资料保存在你自己的工作目录，安装包只放通用方法。实际外发、发布、支出或客户系统操作依赖相应工具和授权。
 
-## 会交付什么
+## Method
 
-按任务交出一份可执行的验证方案、真实操作状态或复盘决定。方案写清对象、改动、比较方式、指标、观察窗口、资源上限及停止条件；复盘检查数据质量、实际收益与风险，再给下一动作。没有外部工具或授权时，交出待执行包，不宣称已上线。
+入口只保留任务判断和必要边界，按需加载相关方法，不要求每次读完或跑完整个流程。
 
-方法按需加载：[实验设计](skills/global-growth-experiments/references/experiment-design.md)、[测量与数据](skills/global-growth-experiments/references/measurement.md)、[执行与恢复](skills/global-growth-experiments/references/execution.md)、[复盘与回流](skills/global-growth-experiments/references/learning.md)。一次简短问题无需建立完整实验档案。
+| 方法 | 解决什么 |
+|---|---|
+| [实验设计](skills/global-growth-experiments/references/experiment-design.md) | 选择关键未知、证据方式、分配单位与决策条件 |
+| [测量与数据](skills/global-growth-experiments/references/measurement.md) | 事件、分母、窗口、去重、成熟与数据质量 |
+| [执行与恢复](skills/global-growth-experiments/references/execution.md) | 操作包、上线核验、护栏、变更与回退 |
+| [复盘与回流](skills/global-growth-experiments/references/learning.md) | 不确定性、成本、投入决定与下一动作 |
 
-可选的转化率计算器使用 Python 3.10+ 标准库，不需要密钥或服务：
+需要核对两组转化计数时，可直接运行：
 
-```bash
-python3 skills/global-growth-experiments/scripts/conversion_summary.py --control 20 100 --variant 30 100
+```sh
+python3 skills/global-growth-experiments/scripts/conversion_summary.py --control 24 60 --variant 33 60
 ```
 
-它给出比例、百分点差、相对变化及各组 Wilson 区间，不自动判断实验胜负。分析收入、聚类、序贯或复杂归因时需要相应数据与方法。
+计算器提供描述性比例、百分点差、相对变化和各组 Wilson 区间，不自动宣布胜负。
 
-## 在五个 Skill 中的位置
+## Validation
 
-本 Skill 负责验证与学习：把市场、内容、渠道和客户动作中的未知变成可检验的问题，把结果交回对应部分。它不重新做市场选择、不批量生成营销内容，也不代替日常运营或销售。可通过普通文字和文件交接，其他四个不是安装依赖。
-
-客户和业务数据存放在用户指定的项目目录，安装单元只包含方法、模板及计算工具。关于职责和取舍见 [设计说明](docs/design.md)。
-
-## 验证
-
-```bash
-python3 scripts/validate.py
-python3 -m unittest discover -s tests -v
+```sh
+PYTHONDONTWRITEBYTECODE=1 python3 scripts/validate.py
 ```
 
-结构、内部链接与计算检查，以及模型试用的范围和限制分别记录在 [验证说明](validation/README.md)。测试通过不代表真实增长效果；需要真实曝光、成交与成熟留存数据才能判断业务收益。
+[验证说明](validation/README.md)区分结构与记录检查、计算测试、模型任务和真实业务结果。自动检查不替代语义审阅；合成试用不能证明获客、收入或留存提升。客户端实际加载、目标用户理解和业务效果应在自己的环境验证。
 
-Growth experiment design, execution coordination and review for international products. Turn a business uncertainty into an actionable test and a defensible next decision. Skill instructions are in Chinese; outputs follow the user's audience and language.
+## Ecosystem
 
-项目及随包代码采用 [MIT License](LICENSE)。
+[01 市场战略](https://github.com/NextVariable/global-gtm-strategy-skill) → [02 定位内容](https://github.com/NextVariable/global-growth-content-skill) → [03 发布获客](https://github.com/NextVariable/global-launch-acquisition-skill) → [04 客户增长](https://github.com/NextVariable/global-sales-retention-skill) → [05 实验复盘](https://github.com/NextVariable/global-growth-experiments-skill)
+
+五个独立仓库，按当前问题选用。共享产品背景、证据与版本，结果可以回到前面的决策；其他四个不是安装依赖。
+
+## Contributing
+
+改进建议请带一个具体任务、期望结果和实际问题。开发、检查与提交方式见 [CONTRIBUTING.md](CONTRIBUTING.md)；功能问题可提交 [Issue](https://github.com/NextVariable/global-growth-experiments-skill/issues/new/choose)。
+
+## English
+
+Choose a meaningful growth experiment, coordinate execution, validate measurement and make the next investment decision. Supports both randomized tests and useful low-traffic learning. Install the complete skill directory and invoke `$global-growth-experiments`. Instructions are Chinese-first; deliverables follow the target audience. Model and external tools are supplied by your client.
+
+[MIT](LICENSE). 安装和再分发时保留随包许可文件。
