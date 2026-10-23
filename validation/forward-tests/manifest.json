@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "recorded_date_utc": "2026-10-23",
+  "execution": "actual model sub-agent run",
+  "isolation": "One fresh context for this skill; three tasks ran sequentially in that context. No development history or grading notes supplied.",
+  "model": "Inherited host model; exact build, sampling configuration, tokens and cost unavailable.",
+  "limitations": "Synthetic tasks, no customer or production actions. Not a competitor comparison or measured automatic-trigger evaluation.",
+  "runs": {
+    "test_experiments": {
+      "fork_turns": "none",
+      "runtime_sha256": {
+        "skills/global-growth-experiments/LICENSE": "4f18feab6cac96e3e33da744be4cd74db6b779326008bfaf2b3243ecf16811ca",
+        "skills/global-growth-experiments/SKILL.md": "285dd2f34e2d1e752cc0511b1b540384bd672cf38d2b4549cea890e9c85de904",
+        "skills/global-growth-experiments/agents/openai.yaml": "74550c69fcb828e8cbd38eda806a23d2a6eb7a876a9eeac38fc979711bb5e8de",
+        "skills/global-growth-experiments/references/execution.md": "92293cf1107f559aea24c93e3b0679a167e0f0469dc1683618e8c512da2b8c9e",
+        "skills/global-growth-experiments/references/experiment-design.md": "e42cd8e4b446bf423eaec4f2e79135ca5c77cb771c9f0aac037e5b63e28875f4",
+        "skills/global-growth-experiments/references/learning.md": "995609afcd1271fd3795cf92797353beb54f1ff9c948c338f9f4ae592ff35428",
+        "skills/global-growth-experiments/references/measurement.md": "d2506524738090062c1aacf722642bf08cdf925559561d39194c9563f9967ab4",
+        "skills/global-growth-experiments/scripts/conversion_summary.py": "95e6d3737838456c4ea4b07939e7d917b805f6b0197734d7655ec279c94a0f45",
+        "skills/global-growth-experiments/templates/experiment.md": "4dab4026b51917145ddb3032afc5fc029f1e1243321b7a766e9260cb91e30188"
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "low-traffic",
+      "run": "test_experiments",
+      "input_file": "low-traffic.input.md",
+      "input_sha256": "bebd323da4522f5417d185e00627b5f9c7ba51894504a837fae71cd16a52b41e",
+      "output_file": "low-traffic.output.md",
+      "output_sha256": "10cdc89462fcf77ee024294aa1d3bb7d14cf5db2f6e16059170febf4139135db"
+    },
+    {
+      "id": "attribution",
+      "run": "test_experiments",
+      "input_file": "attribution.input.md",
+      "input_sha256": "ef4500e8665f6777a01af83e713523e0495b1316dfc13e3ccbe9e03baef6c788",
+      "output_file": "attribution.output.md",
+      "output_sha256": "a87f256902919ddc942481f5f0d1ba2d1ddfb5241ef733edcc4d0f1cc298a95a"
+    },
+    {
+      "id": "guardrail",
+      "run": "test_experiments",
+      "input_file": "guardrail.input.md",
+      "input_sha256": "f9b9ad6fd64049fa3a31b2d54976b8661462cae825826622b4bed4bb9f5d7f2b",
+      "output_file": "guardrail.output.md",
+      "output_sha256": "7ffa65f5e75f6a19b330d00dbaa2b7ef8c778b4f41f388d80e032393ed6f3499"
+    }
+  ],
+  "accepted_runtime_sha256": {
+    "skills/global-growth-experiments/LICENSE": "4f18feab6cac96e3e33da744be4cd74db6b779326008bfaf2b3243ecf16811ca",
+    "skills/global-growth-experiments/SKILL.md": "285dd2f34e2d1e752cc0511b1b540384bd672cf38d2b4549cea890e9c85de904",
+    "skills/global-growth-experiments/agents/openai.yaml": "74550c69fcb828e8cbd38eda806a23d2a6eb7a876a9eeac38fc979711bb5e8de",
+    "skills/global-growth-experiments/references/execution.md": "92293cf1107f559aea24c93e3b0679a167e0f0469dc1683618e8c512da2b8c9e",
+    "skills/global-growth-experiments/references/experiment-design.md": "e42cd8e4b446bf423eaec4f2e79135ca5c77cb771c9f0aac037e5b63e28875f4",
+    "skills/global-growth-experiments/references/learning.md": "995609afcd1271fd3795cf92797353beb54f1ff9c948c338f9f4ae592ff35428",
+    "skills/global-growth-experiments/references/measurement.md": "d2506524738090062c1aacf722642bf08cdf925559561d39194c9563f9967ab4",
+    "skills/global-growth-experiments/scripts/conversion_summary.py": "95e6d3737838456c4ea4b07939e7d917b805f6b0197734d7655ec279c94a0f45",
+    "skills/global-growth-experiments/templates/experiment.md": "4dab4026b51917145ddb3032afc5fc029f1e1243321b7a766e9260cb91e30188"
+  }
+}

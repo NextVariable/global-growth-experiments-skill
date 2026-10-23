@@ -1,0 +1,4 @@
+interface:
+  display_name: "增长实验执行与复盘"
+  short_description: "选择值得做的增长验证，协调执行与测量，判断继续、扩大、修改还是停止"
+  default_prompt: "使用 $global-growth-experiments，根据我们的增长目标、现有数据和资源限制，选择下一项验证并给出可执行方案与判定条件。"
