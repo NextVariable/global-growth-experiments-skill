@@ -102,3 +102,5 @@ PYTHONDONTWRITEBYTECODE=1 python3 scripts/validate.py
 Choose a meaningful growth experiment, coordinate execution, validate measurement and make the next investment decision. Supports both randomized tests and useful low-traffic learning. Install the complete skill directory and invoke `$global-growth-experiments`. Instructions are Chinese-first; deliverables follow the target audience. Model and external tools are supplied by your client.
 
 [MIT](LICENSE). 安装和再分发时保留随包许可文件。
+
+维护与更新：[变更记录](CHANGELOG.md) · [升级与回退](docs/upgrading.md) · [安全问题反馈](SECURITY.md)。
