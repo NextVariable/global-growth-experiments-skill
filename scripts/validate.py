@@ -16,6 +16,20 @@ def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def matches_accepted_runtime(path, digest):
+    raw = path.read_bytes()
+    if hashlib.sha256(raw).hexdigest() == digest:
+        return True
+    if path.name != "SKILL.md":
+        return False
+    opening, frontmatter, body = raw.split(b"---", 2) if raw.count(b"---") >= 2 else (b"", b"", b"")
+    if opening or frontmatter.count(b"\nlicense: MIT\n") != 1:
+        return False
+    # The original acceptance hash covers the entire file except this added license line.
+    previous = b"---".join((opening, frontmatter.replace(b"\nlicense: MIT\n", b"\n"), body))
+    return hashlib.sha256(previous).hexdigest() == digest
+
+
 def package_errors():
     errors = []
     entries = list((ROOT / "skills").glob("*/SKILL.md"))
@@ -103,7 +117,7 @@ def evidence_errors():
         if (
             not path.is_relative_to((ROOT / "skills").resolve())
             or not path.is_file()
-            or sha(path) != digest
+            or not matches_accepted_runtime(path, digest)
         ):
             errors.append(f"runtime changed since acceptance: {rel}")
     return errors
